@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>TODO List</title>
+  </head>
+  <body>
+    <h1 id="top-heading">TODO App</h1>
+    <form action="/add-task" method="POST">
+      <label for="category">CATEGORY</label>
+      <input type="text" name="category" id="category" />
+      <br />
+      <label for="description">DESCRIPTION</label>
+      <input type="text" name="description" required id="description" />
+      <label for="due_date">DUE DATE</label>
+      <input type="date" name="due_date" id="due_date" required />
+      <br />
+      <button type="submit">ADD TASK</button>
+    </form>
+    <form action="/delete-task" method="post">
+      <button type="submit">DELETE TASKS</button>
+      <br />
+      <%for(obj of task){%>
+      <input
+        type="checkbox"
+        id="<%=obj.id%>"
+        name="description"
+        value="<%=obj.description%>"
+      />
+      <label for="description">
+        Description:<%=obj.description%> Category:<%=obj.category%>
+        DueDate:<%=obj.dueDate%></label
+      ><br />
+      <%}%>
+      <br /><br />
+    </form>
+    <script>
+      var today = new Date().toISOString().split("T")[0];
+      document.getElementsByName("due_date")[0].setAttribute("min", today);
+    </script>
+  </body>
+</html>
